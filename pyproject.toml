@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentsnitch"
+version = "0.1.0"
+description = "What did your AI coding agents actually do? Every command Claude Code, Codex and Gemini CLI ran on your machine, with force-pushes, curl | sh, secret reads and files outside the project flagged."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Arka Khorchidian" }]
+requires-python = ">=3.9"
+dependencies = ["rich>=13"]
+keywords = ["ai-agents", "security", "claude-code", "codex", "gemini-cli", "audit", "devsecops", "llm", "coding-agents", "cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Utilities",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+agentsnitch = "agentsnitch.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ArkaKhorchidian/agentsnitch"
+Issues = "https://github.com/ArkaKhorchidian/agentsnitch/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentsnitch"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["docs", ".github"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
